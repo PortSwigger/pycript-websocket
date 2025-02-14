@@ -4,7 +4,7 @@
 </p>
 
 
-PyCript WebSocket is a Burp Suite extension that enables users to encrypt and decrypt WebSocket messages for manual and automated application penetration testing. Built with the same logic as the original PyCript, this extension provides a separate solution specifically for WebSockets. It allows users to implement custom encryption and decryption logic using languages like Python, Go, Node.js, C, Bash, etc., ensuring flexibility for unique testing needs.
+PyCript WebSocket is a Burp Suite extension that enables users to encrypt and decrypt WebSocket messages. Built with the same logic as the original PyCript, this extension provides a separate solution specifically for WebSockets. It allows users to implement custom encryption and decryption logic using languages like Python, Go, Node.js, C, Bash, etc., ensuring flexibility for unique testing needs.
 
 
 
