@@ -13,13 +13,13 @@ PyCript WebSocket is a Burp Suite extension that enables users to encrypt and de
 
 
 
-[![Deploy](https://github.com/Anof-cyber/PyCript-Docs/actions/workflows/static.yml/badge.svg)](https://github.com/Anof-cyber/PyCript-Docs/actions/workflows/static.yml)
-![GitHub](https://img.shields.io/github/license/Anof-cyber/APTRS)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/Anof-cyber/PyCript)
+[![Java CI with Gradle](https://github.com/Anof-cyber/PyCript-WebSocket/actions/workflows/build.yml/badge.svg)](https://github.com/Anof-cyber/PyCript-WebSocket/actions/workflows/build.yml)
+![GitHub](https://img.shields.io/github/license/Anof-cyber/PyCript-WebSocket)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/Anof-cyber/PyCript-WebSocket)
 [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/Anof-cyber)
-![GitHub Release Date](https://img.shields.io/github/release-date/anof-cyber/PyCript?style=plastic)
-![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/anof-cyber/PyCript?include_prereleases)
-![GitHub last commit](https://img.shields.io/github/last-commit/Anof-cyber/PyCript)
+![GitHub Release Date](https://img.shields.io/github/release-date/anof-cyber/PyCript-WebSocket?style=plastic)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/anof-cyber/PyCript-WebSocket?include_prereleases)
+![GitHub last commit](https://img.shields.io/github/last-commit/Anof-cyber/PyCript-WebSocket)
 [![](https://i.ibb.co/qsV4mb9/twitter-2.png)](https://twitter.com/ano_f_)[![](https://i.ibb.co/89LKTrL/linkedin-1.png)](https://www.linkedin.com/in/sourav-kalal/)
 
 
