@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'com.pycriptsocket'
+version '1.1'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'net.portswigger.burp.extensions:montoya-api:+' // Burp Suite API
+}
+
+test {
+    useJUnitPlatform()
+}
