@@ -10,19 +10,21 @@ public class Decryption {
         TempFile tempFile = new TempFile();
         String tempFilePath = tempFile.processData(decryptedContent);
 
-        // Get the decryption file path from the UI class
         String decryptionFilePath = UI.getInstance().getDecryptionFilePath();
 
-        // Call the Execution class to run the system command
         Execution execution = new Execution();
         boolean success = execution.runCommand(decryptionFilePath, tempFilePath);
 
         if (success) {
-            // Read the updated content from the temp file
             String updatedContent = tempFile.readFileContent(tempFilePath);
+            boolean isDeleted = tempFile.deleteFile(tempFilePath);
+            if (isDeleted) {
+                System.out.println("Temporary file deleted successfully.");
+            } else {
+                System.out.println("Failed to delete the temporary file.");
+            }
             return ByteArray.byteArray(updatedContent);
         } else {
-            // Return the original content if the execution was not successful
             return content;
         }
     }

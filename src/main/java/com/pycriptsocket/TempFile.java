@@ -30,4 +30,9 @@ public class TempFile {
             return null;
         }
     }
+
+    public boolean deleteFile(String filePath) {
+        File file = new File(filePath);
+        return file.delete();
+    }
 }

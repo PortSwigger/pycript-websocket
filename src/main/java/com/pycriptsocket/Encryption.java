@@ -9,8 +9,6 @@ public class Encryption {
 
         TempFile tempFile = new TempFile();
         String tempFilePath = tempFile.processData(encryptedContent);
-
-        // Get the encryption file path from the UI class
         String encryptionFilePath = UI.getInstance().getEncryptionFilePath();
 
         // Call the Execution class to run the system command
@@ -18,11 +16,15 @@ public class Encryption {
         boolean success = execution.runCommand(encryptionFilePath, tempFilePath);
 
         if (success) {
-            // Read the updated content from the temp file
             String updatedContent = tempFile.readFileContent(tempFilePath);
+            boolean isDeleted = tempFile.deleteFile(tempFilePath);
+            if (isDeleted) {
+                System.out.println("Temporary file deleted successfully.");
+            } else {
+                System.out.println("Failed to delete the temporary file.");
+            }
             return ByteArray.byteArray(updatedContent);
         } else {
-            // Return the original content if the execution was not successful
             return content;
         }
     }

@@ -17,7 +17,6 @@ public class PyCript implements BurpExtension
     @Override
     public void initialize(MontoyaApi api)
     {
-        // set extension name
         api.extension().setName("PyCript WebSocket");
 
         Logging logging = api.logging();
@@ -25,7 +24,6 @@ public class PyCript implements BurpExtension
         logging.logToOutput("VERSION: 0.1");
         logging.logToOutput("GitHub - https://github.com/Anof-cyber/PyCript-WebSocket");
         logging.logToOutput("Website - https://souravkalal.tech/");
-        logging.logToOutput("Documentation - https://pycript.souravkalal.tech/");
         api.userInterface().registerSuiteTab("PyCript WebSocket", new UI(api));
 
         api.userInterface().registerWebSocketMessageEditorProvider(new WebSocketEditorProvider(api));
