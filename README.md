@@ -48,7 +48,8 @@ PyCript WebSocket is a Burp Suite extension that enables users to encrypt and de
 
 
 > [!Note]  
-> PyCript Web Socket has separate Logic to handle encryption and decryption and demo code from Original PyCript will not work with the PyCript WebSocket version. The main logic is same in both the extension yet it differs at some level.  DO NOT USE https://github.com/Anof-cyber/PyCript-Template for PyCript WebSocket.
+> **PyCript WebSocket** has a separate logic for handling encryption and decryption, making it incompatible with the demo code from the original **PyCript**. While both extensions share the same core concept, they differ in implementation. **Do not use** [PyCript-Template](https://github.com/Anof-cyber/PyCript-Template) for **PyCript WebSocket**.
+ 
 
 
 Below Example is in JavaScript, You can use any language including Bash, C, Python, Java, Go etc.

@@ -144,9 +144,16 @@ public class UI extends JPanel {
         statusToggleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (statusToggleButton.isSelected()) {
-                    statusToggleButton.setText("ON");
+                if (encryptionFilePath != null && !encryptionFilePath.isEmpty() &&
+                    decryptionFilePath != null && !decryptionFilePath.isEmpty()) {
+                    if (statusToggleButton.isSelected()) {
+                        statusToggleButton.setText("ON");
+                    } else {
+                        statusToggleButton.setText("OFF");
+                    }
                 } else {
+                    JOptionPane.showMessageDialog(null, "Please select both encryption and decryption files before turning on the status.");
+                    statusToggleButton.setSelected(false);
                     statusToggleButton.setText("OFF");
                 }
             }
