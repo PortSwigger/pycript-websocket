@@ -45,7 +45,7 @@ PyCript WebSocket is a Burp Suite extension that enables users to encrypt and de
 ### Image
 
 
-![PyCript](https://i.ibb.co/Z1dkcXzd/Animation2.gif)
+![PyCript](https://i.ibb.co/yB0bgPF0/Animation2.gif)
 
 
 ## Demo Code
