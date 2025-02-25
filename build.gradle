@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'net.portswigger.burp.extensions:montoya-api:+' // Burp Suite API
+    implementation 'net.portswigger.burp.extensions:montoya-api:2023.4' // Burp Suite API
 }
 
 test {
