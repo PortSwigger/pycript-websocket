@@ -15,11 +15,9 @@ import java.awt.*;
 class WebSocketRequestEditor implements ExtensionProvidedWebSocketMessageEditor
 {
     private final RawEditor requestEditor;
-     
-
+    private final EncDec encDec = new EncDec();
 
     WebSocketRequestEditor(MontoyaApi api, EditorCreationContext creationContext)
-
     {
         if (creationContext.editorMode() == EditorMode.READ_ONLY)
         {
@@ -32,17 +30,15 @@ class WebSocketRequestEditor implements ExtensionProvidedWebSocketMessageEditor
 
     @Override
     public ByteArray getMessage() {
-        // message is edited in the editor, so we return the encrypted contents 
-        EncDec encDec = new EncDec();
+        // Use the same instance of EncDec
         ByteArray encryptedContent = encDec.process(requestEditor.getContents(), true);
         return encryptedContent;
     }
 
     @Override
     public void setMessage(WebSocketMessage message) {
-        //decrypt the message
+        // Use the same instance of EncDec
         ByteArray content = message.payload();
-        EncDec encDec = new EncDec();
         ByteArray updatedContent = encDec.process(content, false);
         requestEditor.setContents(updatedContent);
     }
