@@ -2,7 +2,6 @@ package com.pycriptsocket;
 
 import burp.api.montoya.MontoyaApi;
 import burp.api.montoya.core.ByteArray;
-import burp.api.montoya.logging.Logging;
 import burp.api.montoya.ui.Selection;
 import burp.api.montoya.ui.editor.EditorOptions;
 import burp.api.montoya.ui.editor.RawEditor;
@@ -10,27 +9,18 @@ import burp.api.montoya.ui.editor.extension.EditorCreationContext;
 import burp.api.montoya.ui.editor.extension.EditorMode;
 import burp.api.montoya.ui.editor.extension.ExtensionProvidedWebSocketMessageEditor;
 import burp.api.montoya.ui.contextmenu.WebSocketMessage;
-import burp.api.montoya.utilities.Base64Utils;
-import burp.api.montoya.utilities.URLUtils;
 
 import java.awt.*;
-
-import static burp.api.montoya.core.ByteArray.byteArray;
 
 class WebSocketRequestEditor implements ExtensionProvidedWebSocketMessageEditor
 {
     private final RawEditor requestEditor;
-    private final Base64Utils base64Utils;
-    private final URLUtils urlUtils;
-    private final MontoyaApi api;
+     
+
 
     WebSocketRequestEditor(MontoyaApi api, EditorCreationContext creationContext)
-    {
-        this.api = api;
-        base64Utils = api.utilities().base64Utils();
-        urlUtils = api.utilities().urlUtils();
-        Logging logging = api.logging();
 
+    {
         if (creationContext.editorMode() == EditorMode.READ_ONLY)
         {
             requestEditor = api.userInterface().createRawEditor(EditorOptions.READ_ONLY);
@@ -43,8 +33,8 @@ class WebSocketRequestEditor implements ExtensionProvidedWebSocketMessageEditor
     @Override
     public ByteArray getMessage() {
         // message is edited in the editor, so we return the encrypted contents 
-        Encryption encryption = new Encryption();
-        ByteArray encryptedContent = encryption.encryptAndPassToTempFile(requestEditor.getContents());
+        EncDec encDec = new EncDec();
+        ByteArray encryptedContent = encDec.process(requestEditor.getContents(), true);
         return encryptedContent;
     }
 
@@ -52,12 +42,9 @@ class WebSocketRequestEditor implements ExtensionProvidedWebSocketMessageEditor
     public void setMessage(WebSocketMessage message) {
         //decrypt the message
         ByteArray content = message.payload();
-        Decryption decryption = new Decryption();
-        ByteArray updatedContent = decryption.decryptAndPassToTempFile(content);
+        EncDec encDec = new EncDec();
+        ByteArray updatedContent = encDec.process(content, false);
         requestEditor.setContents(updatedContent);
-        
-
-        
     }
 
     @Override
@@ -67,7 +54,7 @@ class WebSocketRequestEditor implements ExtensionProvidedWebSocketMessageEditor
 
     @Override
     public String caption() {
-        return "PyCript WebSocket";
+        return "Py WebSocket";
     }
 
     @Override
