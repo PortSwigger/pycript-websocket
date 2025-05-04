@@ -50,7 +50,7 @@ class WebSocketRequestEditor implements ExtensionProvidedWebSocketMessageEditor
 
     @Override
     public String caption() {
-        return "Py WebSocket";
+        return "PyCript WebSocket";
     }
 
     @Override
