@@ -1,0 +1,77 @@
+PyCript WebSocket is a Burp Suite extension that empowers users by enabling the encryption and decryption of WebSocket messages. This extension preserves the fundamental logic of the original PyCript but is solely dedicated to WebSockets. Implement custom encryption and decryption logic using various languages including Python, Go, Node.js, C, Bash, etc., addressing diverse testing requirements in a flexible manner.
+
+This is merely another variant of the original PyCript Extension, specialized for handling WebSocket Messages.
+
+<h2>Features</h2>
+
+<ul>
+  <li>Encrypt &amp; Decrypt Web Socket Messages for both server-side and client-side</li>
+  <li>View and Modify the encrypted Messages in plaintext</li>
+  <li>Enjoy complete freedom in determining encryption and decryption logic</li>
+</ul>
+
+<h2>Usage</h2>
+
+<strong>Note:</strong> PyCript WebSocket has distinct logic for conducting encryption and decryption operations. This makes it incompatible with the demo code from the original PyCript. Despite sharing the same core concept, they differ in implementation. Do not use PyCript-Template for PyCript WebSocket.
+
+Heres an example of how to use it with JavaScript, but you can use any language including Bash, C, Python, Java, Go, etc:
+
+<h3>Decryption Code</h3>
+
+<pre><code class=Code>// String Decryption with AES 128 UTF8
+const fs = require(fs);
+const path = require(path);
+var CryptoJS = require(crypto-js);
+const { program } = require(commander);
+const { Buffer } = require(buffer);
+
+program
+.option(-d, --data &lt;file_path&gt;, Path to JSON file containing base64 encoded + encrypted data);
+  
+program.parse(process.argv);
+const options = program.opts();
+ 
+const filePath = options.data;
+const absoluteFilePath = path.resolve(filePath);
+var data = fs.readFileSync(absoluteFilePath, utf8)
+// call the functions to handle decryption, 
+const originalText = decryptMessage(data);
+
+// write decrypt data to same temp file.
+fs.writeFileSync(absoluteFilePath,originalText)
+
+function decryptMessage(encryptedMessage) {
+    // your decryption logic
+      return decrypted_data;
+  }
+</code></pre>
+  
+
+<h3>Encryption Code</h3>
+  
+<pre><code class=Code>// String Decryption with AES 128 UTF8
+const fs = require(fs);
+const path = require(path);
+var CryptoJS = require(crypto-js);
+const { program } = require(commander);
+const { Buffer } = require(buffer);
+
+program
+.option(-d, --data &lt;file_path&gt;, Path to JSON file containing base64 encoded + encrypted data);
+  
+program.parse(process.argv);
+const options = program.opts();
+ 
+const filePath = options.data;
+const absoluteFilePath = path.resolve(filePath);
+var data = fs.readFileSync(absoluteFilePath, utf8)
+// call the functions to handle encryption, 
+const originalText = encryptMessage(data);
+
+// write encrypted data to same temp file.
+fs.writeFileSync(absoluteFilePath,originalText)
+
+function encryptMessage(message) {
+    // your encryption logic
+    return encrypted_message;
+  }</code></pre>
