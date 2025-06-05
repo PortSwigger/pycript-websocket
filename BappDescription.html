@@ -33,7 +33,7 @@ const { program } = require('commander');
 const { Buffer } = require('buffer');
 
 program
-  .option('-d, --data <file_path>', 'Path to JSON file containing base64 encoded + encrypted data');
+  .option('-d, --data &lt;file_path&gt;', 'Path to JSON file containing base64 encoded + encrypted data');
   
 program.parse(process.argv);
 const options = program.opts();
@@ -63,7 +63,7 @@ const { program } = require('commander');
 const { Buffer } = require('buffer');
 
 program
-  .option('-d, --data <file_path>', 'Path to JSON file containing base64 encoded + encrypted data');
+  .option('-d, --data &lt;file_path&gt;', 'Path to JSON file containing base64 encoded + encrypted data');
   
 program.parse(process.argv);
 const options = program.opts();
