@@ -1,39 +1,46 @@
-PyCript WebSocket is a Burp Suite extension that empowers users by enabling the encryption and decryption of WebSocket messages. This extension preserves the fundamental logic of the original PyCript but is solely dedicated to WebSockets. Implement custom encryption and decryption logic using various languages including Python, Go, Node.js, C, Bash, etc., addressing diverse testing requirements in a flexible manner.
-
-This is merely another variant of the original PyCript Extension, specialized for handling WebSocket Messages.
+<p>
+  This extension enables encryption and decryption of WebSocket messages in Burp Suite. Based on the original PyCript concept, it offers a dedicated solution for WebSocket communication with the flexibility to implement custom logic using various languages such as Python, JavaScript, Go, C, or Bash.
+</p>
+<p>
+  Messages can be transparently intercepted, decrypted, modified in plain text, and then re-encrypted before forwarding, allowing for streamlined testing of secure WebSocket implementations.
+</p>
 
 <h2>Features</h2>
-
 <ul>
-  <li>Encrypt &amp; Decrypt Web Socket Messages for both server-side and client-side</li>
-  <li>View and Modify the encrypted Messages in plaintext</li>
-  <li>Enjoy complete freedom in determining encryption and decryption logic</li>
+  <li>Encrypt and decrypt WebSocket messages in both "To Server" and "To Client" directions</li>
+  <li>Modify messages in plain text after decryption and before re-encryption</li>
+  <li>Supports any scripting language for custom cryptographic logic (e.g., Python, Node.js, Bash, C)</li>
+  <li>Separate logic from the original PyCript, tailored for WebSocket use</li>
 </ul>
 
 <h2>Usage</h2>
+<ol>
+  <li>Create standalone scripts for encryption and decryption. The extension will pass data via temporary JSON files.</li>
+  <li>Write your decryption logic to read the encrypted content, decode or decrypt it, and overwrite the file with the plaintext.</li>
+  <li>Write your encryption logic similarly to read modified plaintext, encrypt it, and write the result back to the file.</li>
+  <li>Example logic can be implemented in JavaScript, such as using AES-128 with UTF-8 encoding, but any language is acceptable.</li>
+</ol>
 
-<strong>Note:</strong> PyCript WebSocket has distinct logic for conducting encryption and decryption operations. This makes it incompatible with the demo code from the original PyCript. Despite sharing the same core concept, they differ in implementation. Do not use PyCript-Template for PyCript WebSocket.
+<h2>Examples</h2>
 
-Heres an example of how to use it with JavaScript, but you can use any language including Bash, C, Python, Java, Go, etc:
-
-<h3>Decryption Code</h3>
-
-<pre><code class=Code>// String Decryption with AES 128 UTF8
-const fs = require(fs);
-const path = require(path);
-var CryptoJS = require(crypto-js);
-const { program } = require(commander);
-const { Buffer } = require(buffer);
+<h3>Decryption</h3>
+<pre><code class="Code">
+// String Decryption with AES 128 UTF8
+const fs = require('fs');
+const path = require('path');
+var CryptoJS = require("crypto-js");
+const { program } = require('commander');
+const { Buffer } = require('buffer');
 
 program
-.option(-d, --data &lt;file_path&gt;, Path to JSON file containing base64 encoded + encrypted data);
+  .option('-d, --data <file_path>', 'Path to JSON file containing base64 encoded + encrypted data');
   
 program.parse(process.argv);
 const options = program.opts();
  
 const filePath = options.data;
 const absoluteFilePath = path.resolve(filePath);
-var data = fs.readFileSync(absoluteFilePath, utf8)
+var data = fs.readFileSync(absoluteFilePath, 'utf8')
 // call the functions to handle decryption, 
 const originalText = decryptMessage(data);
 
@@ -45,26 +52,25 @@ function decryptMessage(encryptedMessage) {
       return decrypted_data;
   }
 </code></pre>
-  
 
-<h3>Encryption Code</h3>
-  
-<pre><code class=Code>// String Decryption with AES 128 UTF8
-const fs = require(fs);
-const path = require(path);
-var CryptoJS = require(crypto-js);
-const { program } = require(commander);
-const { Buffer } = require(buffer);
+<h3>Encryption</h3>
+<pre><code class="Code">
+// String Decryption with AES 128 UTF8
+const fs = require('fs');
+const path = require('path');
+var CryptoJS = require("crypto-js");
+const { program } = require('commander');
+const { Buffer } = require('buffer');
 
 program
-.option(-d, --data &lt;file_path&gt;, Path to JSON file containing base64 encoded + encrypted data);
+  .option('-d, --data <file_path>', 'Path to JSON file containing base64 encoded + encrypted data');
   
 program.parse(process.argv);
 const options = program.opts();
  
 const filePath = options.data;
 const absoluteFilePath = path.resolve(filePath);
-var data = fs.readFileSync(absoluteFilePath, utf8)
+var data = fs.readFileSync(absoluteFilePath, 'utf8')
 // call the functions to handle encryption, 
 const originalText = encryptMessage(data);
 
@@ -74,4 +80,9 @@ fs.writeFileSync(absoluteFilePath,originalText)
 function encryptMessage(message) {
     // your encryption logic
     return encrypted_message;
-  }</code></pre>
+  }
+</code></pre>
+
+<p>
+Note: This extension is not compatible with the original PyCript demo code or template. Be sure to design separate logic for PyCript WebSocket.
+</p>

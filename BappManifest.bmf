@@ -4,10 +4,10 @@ Name: PyCript WebSocket
 RepoName: pycript-websocket
 ScreenVersion: 0.1
 SerialVersion: 1
-MinPlatformVersion: 0
+MinPlatformVersion: 4
 ProOnly: False
-Author: Anof-cyber
-ShortDescription: This extension allows users to encrypt and decrypt WebSocket messages. It supports custom encryption/decryption logic using various programming languages for unique testing needs.
+Author: Sourav Kalal/AnoF
+ShortDescription: Custom encryption and decryption for WebSocket messages using any language.
 EntryPoint: ./PyCript-0.1.jar
 BuildCommand: ./gradlew jar
 SupportedProducts: Pro, Community
