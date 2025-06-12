@@ -1,6 +1,7 @@
 package com.pycriptsocket;
 
 import burp.api.montoya.core.ByteArray;
+import burp.api.montoya.logging.Logging;
 
 public class EncDec {
 
@@ -12,19 +13,18 @@ public class EncDec {
         this.execution = new Execution();
     }
 
-    public ByteArray process(ByteArray content, boolean isEncryption) {
-        String processedContent = content.toString();
-
-        String tempFilePath = tempFile.processData(processedContent);
+    public ByteArray process(ByteArray content, boolean isEncryption, Logging logging) {
+        
+        String tempFilePath = tempFile.processData(content);
 
         String filePath = isEncryption
                 ? UI.getInstance().getEncryptionFilePath()
                 : UI.getInstance().getDecryptionFilePath();
 
-        boolean success = execution.runCommand(filePath, tempFilePath);
+        boolean success = execution.runCommand(filePath, tempFilePath, logging);
 
         if (success) {
-            String updatedContent = tempFile.readFileContent(tempFilePath);
+            byte[] updatedContent = tempFile.readFileContent(tempFilePath);
             boolean isDeleted = tempFile.deleteFile(tempFilePath);
             if (isDeleted) {
                 System.out.println("Temporary file deleted successfully.");
@@ -33,7 +33,7 @@ public class EncDec {
             }
             return ByteArray.byteArray(updatedContent);
         } else {
-            return content;
+                        return content;
         }
     }
 }

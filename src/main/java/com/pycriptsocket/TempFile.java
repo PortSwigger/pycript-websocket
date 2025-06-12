@@ -1,20 +1,24 @@
 package com.pycriptsocket;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import burp.api.montoya.core.ByteArray;
+
 public class TempFile {
 
-    public String processData(String data) {
+    public String processData(ByteArray data) {
         // Process the decrypted data and save it to a temporary file
         try {
+            byte[] bytes = data.getBytes();
             File tempFile = File.createTempFile("decrypted_", ".txt");
-            FileWriter writer = new FileWriter(tempFile);
-            writer.write(data);
-            writer.close();
+
+            FileOutputStream fos = new FileOutputStream(tempFile);
+            fos.write(bytes);
+            fos.close();
             return tempFile.getAbsolutePath();
         } catch (IOException e) {
             e.printStackTrace();
@@ -22,9 +26,9 @@ public class TempFile {
         }
     }
 
-    public String readFileContent(String filePath) {
+    public byte[] readFileContent(String filePath) {
         try {
-            return new String(Files.readAllBytes(Paths.get(filePath)));
+            return Files.readAllBytes(Paths.get(filePath));
         } catch (IOException e) {
             e.printStackTrace();
             return null;
