@@ -4,10 +4,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import burp.api.montoya.logging.Logging;
 
 public class Execution {
 
-    public boolean runCommand(String decryptionFilePath, String tempFilePath) {
+    public boolean runCommand(String decryptionFilePath, String tempFilePath, Logging logging) {
         try {
             String languageBinaryPath = UI.getInstance().getLanguageBinaryPath();
             List<String> command = new ArrayList<>();
@@ -29,7 +30,12 @@ public class Execution {
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+                logging.logToOutput(line);
+            }
+            BufferedReader errReader = new BufferedReader(
+                new InputStreamReader(process.getErrorStream()));
+            while ((line = errReader.readLine()) != null) {
+                logging.logToError(line);
             }
             int exitCode = process.waitFor();
             return exitCode == 0;
