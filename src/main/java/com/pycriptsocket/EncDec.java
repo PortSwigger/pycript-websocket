@@ -1,7 +1,6 @@
 package com.pycriptsocket;
 
 import burp.api.montoya.core.ByteArray;
-import burp.api.montoya.logging.Logging;
 
 public class EncDec {
 
@@ -13,18 +12,25 @@ public class EncDec {
         this.execution = new Execution();
     }
 
-    public ByteArray process(ByteArray content, boolean isEncryption, Logging logging) {
-        
+    public ByteArray process(ByteArray content, boolean isEncryption) {
+
         String tempFilePath = tempFile.processData(content);
 
         String filePath = isEncryption
-                ? UI.getInstance().getEncryptionFilePath()
-                : UI.getInstance().getDecryptionFilePath();
+                ? MainUI.getInstance().getEncryptionFilePath()
+                : MainUI.getInstance().getDecryptionFilePath();
 
-        boolean success = execution.runCommand(filePath, tempFilePath, logging);
+        boolean success = execution.runCommand(filePath, tempFilePath);
 
         if (success) {
             byte[] updatedContent = tempFile.readFileContent(tempFilePath);
+
+            if (MainUI.getInstance() != null && MainUI.getInstance().getLogUI().isLoggingEnabled()) {
+                MainUI.getInstance().getLogUI().appendLog("$ cat " + tempFilePath);
+                String fileContent = new String(updatedContent);
+                MainUI.getInstance().getLogUI().appendLog(fileContent);
+            }
+
             boolean isDeleted = tempFile.deleteFile(tempFilePath);
             if (isDeleted) {
                 System.out.println("Temporary file deleted successfully.");
@@ -32,8 +38,9 @@ public class EncDec {
                 System.out.println("Failed to delete the temporary file.");
             }
             return ByteArray.byteArray(updatedContent);
-        } else {
-                        return content;
         }
+            else {
+                    return content;
+            }
     }
 }

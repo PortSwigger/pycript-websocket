@@ -11,7 +11,6 @@ import burp.api.montoya.core.ByteArray;
 public class TempFile {
 
     public String processData(ByteArray data) {
-        // Process the decrypted data and save it to a temporary file
         try {
             byte[] bytes = data.getBytes();
             File tempFile = File.createTempFile("decrypted_", ".txt");
@@ -19,6 +18,14 @@ public class TempFile {
             FileOutputStream fos = new FileOutputStream(tempFile);
             fos.write(bytes);
             fos.close();
+
+            if (MainUI.getInstance() != null && MainUI.getInstance().getLogUI().isLoggingEnabled()) {
+                MainUI.getInstance().getLogUI().appendLog("$ cat " + tempFile.getAbsolutePath());
+
+                String content = new String(bytes);
+                MainUI.getInstance().getLogUI().appendLog(content);
+            }
+
             return tempFile.getAbsolutePath();
         } catch (IOException e) {
             e.printStackTrace();
