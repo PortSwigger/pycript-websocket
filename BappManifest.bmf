@@ -2,9 +2,9 @@ Uuid: 11821b95626b43fd8a691abaa0e9b8e9
 ExtensionType: 1
 Name: PyCript WebSocket
 RepoName: pycript-websocket
-ScreenVersion: 1.0.0
-SerialVersion: 3
-MinPlatformVersion: 4
+ScreenVersion: 0.2.0
+SerialVersion: 4
+MinPlatformVersion: 7
 ProOnly: False
 Author: Sourav Kalal/AnoF
 ShortDescription: Custom encryption and decryption for WebSocket messages using any language.
