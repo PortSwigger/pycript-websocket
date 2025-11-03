@@ -4,7 +4,6 @@ import burp.api.montoya.MontoyaApi;
 import burp.api.montoya.ui.editor.extension.EditorCreationContext;
 import burp.api.montoya.ui.editor.extension.ExtensionProvidedWebSocketMessageEditor;
 import burp.api.montoya.ui.editor.extension.WebSocketMessageEditorProvider;
-import com.pycriptsocket.UI;
 class WebSocketEditorProvider implements WebSocketMessageEditorProvider
 {
     private final MontoyaApi api;
@@ -13,7 +12,6 @@ class WebSocketEditorProvider implements WebSocketMessageEditorProvider
     {
         this.api = api;
 
-       
     }
 
     @Override
